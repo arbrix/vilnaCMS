@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  # PostgreSQL container
+  postgres:
+    image: postgres:9.6
+    container_name: postgres
+    restart: always
+    env_file:
+      - local/db.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+
+  # Go application container
+  app:
+    build:
+      context: .
+      dockerfile: local/Dockerfile
+    container_name: vilna_cms
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/go/src/github.com/arbrix/vilnaCMS
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
