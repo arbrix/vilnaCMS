@@ -26,3 +26,9 @@ go.work
 
 # DB configuration
 storage/conf.json
+
+# Binaries
+bin/
+
+# media
+media/otp/

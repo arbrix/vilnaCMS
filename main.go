@@ -7,7 +7,7 @@ import (
 	"github.com/uadmin/uadmin"
 )
 
-var pathToDBConf = flag.String("pathToDBConf", "storage/conf.json", "set config path for db")
+var pathToDBConf = flag.String("pathToDBConf", "local/conf.json", "set config path for db")
 
 func main() {
 	flag.Parse()
@@ -17,5 +17,6 @@ func main() {
 	}
 
 	uadmin.Database = db
+
 	uadmin.StartServer()
 }

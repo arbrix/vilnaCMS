@@ -1,4 +1,4 @@
-version: "3"
+version: "3.4"
 
 services:
   # PostgreSQL container
@@ -7,7 +7,7 @@ services:
     container_name: postgres
     restart: always
     env_file:
-      - local/db.env
+      - local/.env
     volumes:
       - pgdata:/var/lib/postgresql/data/
 
@@ -15,15 +15,26 @@ services:
   app:
     build:
       context: .
-      dockerfile: local/Dockerfile
+#      dockerfile: Dockerfile
+      target: dev
     container_name: vilna_cms
     restart: always
     ports:
       - "8080:8080"
     volumes:
-      - .:/go/src/github.com/arbrix/vilnaCMS
+      - ./:/go/src/vilnaCMS
     depends_on:
       - postgres
 
+  # Service for tracking containers logs
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "9999:8080"
+
+# Volume for storing db data
 volumes:
   pgdata:
