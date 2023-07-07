@@ -20,7 +20,7 @@ COPY . .
 RUN go mod download && go mod verify
 
 # build binary
-#RUN go build -ldflags="-s -w" -o /bin/app
+RUN go build -ldflags="-s -w" -o /bin/app
 
 # Dev image with live reloading + debugger
 FROM build AS dev
