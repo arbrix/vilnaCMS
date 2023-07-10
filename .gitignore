@@ -7,6 +7,10 @@
 *.dll
 *.so
 *.dylib
+*.jwt
+*.key
+*.salt
+*.db
 
 # Test binary, built with `go test -c`
 *.test
@@ -19,3 +23,12 @@
 
 # Go workspace file
 go.work
+
+# DB configuration
+storage/conf.json
+
+# Binaries
+bin/
+
+# media
+media/otp/

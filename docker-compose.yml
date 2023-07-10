@@ -1,0 +1,40 @@
+version: "3.4"
+
+services:
+  # PostgreSQL container
+  postgres:
+    image: postgres:9.6
+    container_name: postgres
+    restart: always
+    env_file:
+      - local/.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+
+  # Go application container
+  app:
+    build:
+      context: .
+      # target: serve
+      target: dev
+    container_name: vilna_cms
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/go/src/vilnaCMS
+    depends_on:
+      - postgres
+
+  # Service for tracking containers logs
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "9999:8080"
+
+# Volume for storing db data
+volumes:
+  pgdata:
