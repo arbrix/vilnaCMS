@@ -1,13 +1,10 @@
 # Source code + build dependencies base image
 FROM golang:1.20-alpine AS build
 
-RUN export 
 # set timezone to avoid postgres issues
 RUN apk add -U tzdata
 ENV TZ=Europe/Kiev
 RUN cp /usr/share/zoneinfo/Europe/Kiev /etc/localtime
-
-RUN go env -w CGO_ENABLED="0"
 
 # Set the working directory inside the container
 WORKDIR /go/src/vilnaCMS
@@ -20,6 +17,7 @@ COPY . .
 RUN go mod download && go mod verify
 
 # build binary
+RUN go env -w CGO_ENABLED="0"
 RUN go build -ldflags="-s -w" -o /bin/app
 
 # Dev image with live reloading + debugger
@@ -31,10 +29,19 @@ RUN go install github.com/go-delve/delve/cmd/dlv@latest && \
 CMD ["air", "-c", ".air.toml"]
 
 ## Serve image
-FROM build AS serve
+FROM alpine:latest AS serve
 
+# Set timezone to avoid postgres issues
+RUN apk add -U tzdata
+ENV TZ=Europe/Kiev
+RUN cp /usr/share/zoneinfo/Europe/Kiev /etc/localtime
+
+# Copy binary
 COPY --from=build /bin/app /app
 
-# add specific config if needed
+# ----------------------
+# Add specific db config if needed
+# ----------------------
+COPY --from=build /go/src/vilnaCMS/local/conf.json /local/conf.json
 
 ENTRYPOINT ["/app"]

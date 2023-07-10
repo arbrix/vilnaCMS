@@ -15,7 +15,7 @@ services:
   app:
     build:
       context: .
-#      dockerfile: Dockerfile
+      # target: serve
       target: dev
     container_name: vilna_cms
     restart: always
