@@ -32,3 +32,5 @@ bin/
 
 # media
 media/otp/
+# IDE related files
+/.idea
