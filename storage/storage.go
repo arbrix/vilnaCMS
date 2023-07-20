@@ -2,8 +2,9 @@ package storage
 
 import (
 	"encoding/json"
-	"github.com/uadmin/uadmin"
 	"os"
+
+	"github.com/arbrix/uadmin"
 )
 
 type config struct {
