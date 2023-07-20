@@ -3,11 +3,13 @@ version: "3.4"
 services:
   # PostgreSQL container
   postgres:
-    image: postgres:9.6
+    image: postgres:alpine
     container_name: postgres
     restart: always
-    env_file:
-      - local/.env
+    environment:
+      POSTGRES_USER=test
+      POSTGRES_PASSWORD=test
+      POSTGRES_DB=test
     volumes:
       - pgdata:/var/lib/postgresql/data/
 
