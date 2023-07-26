@@ -23,6 +23,7 @@ services:
     restart: always
     ports:
       - "8080:8080"
+      - "2345:2345"
     volumes:
       - ./:/go/src/vilnaCMS
     depends_on:
