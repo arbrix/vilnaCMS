@@ -2,7 +2,7 @@
   "User":"test",
   "Password": "test",
   "Port": 5432,
-  "Host": "postgres",
+  "Host": "cmspostgres",
   "DbName": "test",
   "Type": "postgres"
 }
