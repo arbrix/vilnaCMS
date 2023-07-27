@@ -7,7 +7,7 @@ ENV TZ=Europe/Kiev
 RUN cp /usr/share/zoneinfo/Europe/Kiev /etc/localtime
 
 # Set the working directory inside the container
-WORKDIR /go/src/nspp-web
+WORKDIR /go/src/vilnaCMS
 
 RUN go env -w CGO_ENABLED="0"
 
