@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 
+	"github.com/arbrix/uadmin"
 	"github.com/arbrix/vilnaCMS/storage"
-	"github.com/uadmin/uadmin"
 )
 
 var pathToDBConf = flag.String("pathToDBConf", "local/conf.json", "set config path for db")

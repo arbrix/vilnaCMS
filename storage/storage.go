@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/uadmin/uadmin"
+	"github.com/arbrix/uadmin"
 )
 
 type config struct {

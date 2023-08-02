@@ -2,12 +2,14 @@ version: "3.4"
 
 services:
   # PostgreSQL container
-  postgres:
-    image: postgres:9.6
-    container_name: postgres
+  cmspostgres:
+    image: postgres:11.5-alpine
+    container_name: cmspostgres
     restart: always
-    env_file:
-      - local/.env
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
     volumes:
       - pgdata:/var/lib/postgresql/data/
 
@@ -21,10 +23,11 @@ services:
     restart: always
     ports:
       - "8080:8080"
+      - "2345:2345"
     volumes:
       - ./:/go/src/vilnaCMS
     depends_on:
-      - postgres
+      - cmspostgres
 
   # Service for tracking containers logs
   dozzle:

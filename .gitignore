@@ -11,6 +11,7 @@
 *.key
 *.salt
 *.db
+*.log
 
 # Test binary, built with `go test -c`
 *.test
@@ -32,3 +33,5 @@ bin/
 
 # media
 media/otp/
+# IDE related files
+/.idea
