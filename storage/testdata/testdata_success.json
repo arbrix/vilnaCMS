@@ -4,5 +4,6 @@
   "Port": 5432,
   "Host": "test",
   "DbName": "test",
-  "Type": "postgres"
+  "Type": "postgres",
+  "SSLMode": "require"
 }
