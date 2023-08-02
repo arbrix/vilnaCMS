@@ -14,6 +14,7 @@ type config struct {
 	Port     int    `json:"Port"`
 	DbName   string `json:"DbName"`
 	Type     string `json:"Type"`
+	SSLMode  string `json:"SSLMode"`
 }
 
 func InitDB(pathToConf string) (*uadmin.DBSettings, error) {
@@ -35,5 +36,6 @@ func InitDB(pathToConf string) (*uadmin.DBSettings, error) {
 		Port:     dbConfig.Port,
 		User:     dbConfig.User,
 		Password: dbConfig.Password,
+		SSLMode:  dbConfig.SSLMode,
 	}, nil
 }
