@@ -943,6 +943,25 @@
     }
   });
 </script>
-
+<script type="text/javascript">
+  arrayVariable = {{ .Menu }};
+  console.log(arrayVariable);
+  var content = "";
+  for (i = 0; i < arrayVariable.length; i++) {
+      if(arrayVariable[i].Hidden){
+          continue;
+      }
+      content += '<li><a href="' + arrayVariable[i].URL + '"><i class="fa fa-home"></i>' + arrayVariable[i].MenuName + '<span class="fa"></span></a>';
+      content += '</li>';
+  }
+  $('#sidebar-list').html(content);
+  // <li><a><i className="fa fa-home"></i> Home <span className="fa fa-chevron-down"></span></a>
+  //     <ul className="nav child_menu">
+  //         <li><a href="index.html">Dashboard</a></li>
+  //         <li><a href="index2.html">Dashboard2</a></li>
+  //         <li><a href="index3.html">Dashboard3</a></li>
+  //     </ul>
+  // </li>
+</script>
 </body>
 </html>

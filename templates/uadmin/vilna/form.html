@@ -4,16 +4,27 @@
     <title>{{.SiteName}} - {{.Schema.Name}}</title>
     <link rel="shortcut icon" href="{{.FavIcon}}"/>
 
-    <link rel="stylesheet" href="/static/uadmin/assets/bootstrap/3.3.7/css/bootstrap.css" >
-    <link rel="stylesheet" href="/static/uadmin/assets/fa/css/all.min.css">
-    <link rel="stylesheet" href="/static/uadmin/assets/bootstrap/3.3.7/css/bootstrap-theme.css" >
-    <link rel="stylesheet" href="/static/uadmin/assets/datepicker/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="/static/uadmin/assets/admin/main.css">
-    <link rel="stylesheet" href="/static/uadmin/assets/css/hover.css">
-    <link rel="stylesheet" href="/static/uadmin/assets/css/form.css">
-    <link rel="stylesheet" href="/static/uadmin/assets/cropper/cropper.min.css">
-    <link rel="stylesheet" href="/static/uadmin/assets/select2/css/select2.min.css">
-    <link rel="stylesheet" href="/static/uadmin/assets/highlight.js/styles/default.css">
+  <!-- Bootstrap -->
+  <link href="/static/uadmin/assets/gentelella/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="/static/uadmin/assets/gentelella/font-awesome.min.css" rel="stylesheet">
+  <!-- NProgress -->
+  <link href="/static/uadmin/assets/gentelella/nprogress.css" rel="stylesheet">
+  <!-- iCheck -->
+  <link href="/static/uadmin/assets/gentelella/green.css" rel="stylesheet">
+
+  <!-- bootstrap-progressbar -->
+  <link href="/static/uadmin/assets/gentelella/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+  <!-- JQVMap -->
+  <link href="/static/uadmin/assets/gentelella/jqvmap.min.css" rel="stylesheet"/>
+  <!-- bootstrap-daterangepicker -->
+  <link href="/static/uadmin/assets/gentelella/daterangepicker.css" rel="stylesheet">
+
+  <!-- Custom Theme Style -->
+  <link href="/static/uadmin/assets/gentelella/custom.min.css" rel="stylesheet">
+  <link href="/static/uadmin/assets/gentelella/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/uadmin/assets/gentelella/buttons.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/uadmin/assets/gentelella/vilna.css" rel="stylesheet">
     <style type="text/css" media="all">
 .hide-text {
   color: rgba(0,0,0,0) !important;
@@ -29,62 +40,63 @@
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   </head>
-  <body{{if .Language.RTL}} dir="rtl"{{end}}>
-  WE ARE FORM
-    <div class="fixed-top bg-black3 default-padding z-index9">
-      <div class="">
-        <div class="pull-right" style="display: block-inline;">
-          <div class="admin-button ">
-            <a href="{{.RootURL}}settings/" style="margin-left:20px;" class="fontgray pointer">
-              <i class="top-panel fa fa-wrench pointer" data-toggle="tooltip" data-placement="bottom" title="{{Tf "uadmin/system" .Language.Code "Settings"}}"></i>&nbsp;
-            </a>
-            <div style="" id="headtab-container" class="toptabs admin-toggle-size dropdown-menu admin-toggle admin-toggle-padding pull-right">
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="{{.RootURL}}" class="site_title"><i class="fa fa-cog fa-spin"></i> <span>{{.SiteName}}</span></a>
             </div>
-            <button  class="searchDark capitalized admin_font fontwhite v-center pointer btn btn-primary"
-                     style="margin-left:20px;" onclick="closetopTabs(this);" data-trigger="user-toggle">
-              <i class="top-panel fa fa-user fa-fw"></i>
-            </button>
-            <div style="right:5px;" class="toptabs admin-toggle-size dropdown-menu user-toggle  pull-right">
-              <center>
-                <p></p>
-                <table class="table table-hover drop-table">
-                  <tr class="pointer">
-                    <td onclick="clickA(this);" >
-                      <a class="no-style" href="{{.RootURL}}profile"><i class="fa fa-user-circle-o fa-fw"></i>&nbsp;{{.User}}</a>
-                    </td>
-                  </tr>
-                  <tr class="pointer">
-                    <td onclick="clickA(this);" >
-                      <a  class="no-style" href="{{.RootURL}}profile#changepass"><i class="fa fa-lock fa-fw"></i> {{Tf "uadmin/system" .Language.Code "Change Password"}}</a>
-                    </td>
-                  </tr>
-                  <tr class="pointer">
-                    <td onclick="clickA(this);" >
-                      <a class="no-style" href="{{.RootURL}}logout/"><i class="fa fa-sign-out fa-fw"></i> {{Tf "uadmin/system" .Language.Code "Logout"}}</a>
-                    </td>
-                  </tr>
-                </table>
-              </center>
+    
+            <div class="clearfix"></div>
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>General</h3>
+                <ul id="sidebar-list" class="nav side-menu">
+    
+                </ul>
+              </div>
+    
             </div>
+            <!-- /sidebar menu -->
           </div>
         </div>
-        <div class="pull-left" style="display: block-inline;">
-          <a href="{{.RootURL}}"><img class="hvr-grow" style="max-height:40px" src="{{.Logo}}"></a>
-          <span class="admin_font fontwhite capitalized vertical-center hidden-xs" >
-            <a id="" href="{{.RootURL}}" class="no-style breadcrumb-item fontwhite " >
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ><i class="fa fa-home"></i> {{Tf "uadmin/system" .Language.Code "Dashboard"}} </span>
-            </a>&nbsp;&nbsp;<span class="bread-dash">/</span>&nbsp;&nbsp;
-            <a id="" href="{{.RootURL}}{{.Schema.ModelName}}/" class="no-style breadcrumb-item fontwhite">
-              <span class="camelcaseFix">{{.Schema.DisplayName}}</span>
-            </a>&nbsp;&nbsp;<span class="bread-dash">/</span>&nbsp;&nbsp;
-            <span id="Current_Position" class="no-style breadcrumb-item active"></span>
-          </span>
-        </div>
-      </div>
-    </div>
-    <br>
 
-    <div class="container-fluid main-content" style="position:relative; top:45px; padding-top: 15px;">
+                <!-- top navigation -->
+                <div class="top_nav">
+                  <div class="nav_menu">
+                      <nav>
+                          <div class="nav toggle">
+                              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                          </div>
+        
+                          <ul class="nav navbar-nav navbar-right">
+                              <li class="">
+                                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                      <img src="/static/uadmin/img.jpg" alt="">{{.User}}
+                                      <span class=" fa fa-angle-down"></span>
+                                  </a>
+                                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                      <li><a href="{{.RootURL}}profile"> Profile</a></li>
+                                      <li>
+                                          <a href="{{.RootURL}}settings/">
+                                              <span>Settings</span>
+                                          </a>
+                                      </li>
+                                      <li><a href="{{.RootURL}}logout/"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      </nav>
+                  </div>
+              </div>
+              <!-- /top navigation -->
+
+    <div class="right_col" role="main">
       <div class="tab-content">
         <ul class="nav nav-tabs admin_font nab-tabs capitalized bold">
           <li id="trigger_{{.Schema.Name}}" class="active tab_button"><a style="margin:0px;" href="#{{.Schema.Name}}" class="camelcaseFix trigger_hash" aria-controls="mainDivTab" role="tab" data-toggle="tab">{{.Schema.Name}}</a></li>
@@ -659,6 +671,8 @@
       <div class="bottom-space col-sm-12">
       </div>
     </div>
+  </div>
+  </div>
 
     <!-- Modal -->
     <div id="Deletemodal" class="modal fade z-index99999" role="dialog" style="width:100%;">
@@ -1306,7 +1320,27 @@ $('.delete-file-btn').click(function(e){
 });
 
 
-    </script>
+</script>
+<script type="text/javascript">
+  arrayVariable = {{ .Menu }};
+  console.log(arrayVariable);
+  var content = "";
+  for (i = 0; i < arrayVariable.length; i++) {
+      if(arrayVariable[i].Hidden){
+          continue;
+      }
+      content += '<li><a href="' + {{ .RootURL }} + '/' + arrayVariable[i].URL + '"><i class="fa fa-home"></i>' + arrayVariable[i].MenuName + '<span class="fa"></span></a>';
+      content += '</li>';
+  }
+  $('#sidebar-list').html(content);
+  // <li><a><i className="fa fa-home"></i> Home <span className="fa fa-chevron-down"></span></a>
+  //     <ul className="nav child_menu">
+  //         <li><a href="index.html">Dashboard</a></li>
+  //         <li><a href="index2.html">Dashboard2</a></li>
+  //         <li><a href="index3.html">Dashboard3</a></li>
+  //     </ul>
+  // </li>
+</script>
     {{range .Schema.IncludeFormJS}}
     <script src="{{.}}" charset="utf-8"></script>
     {{end}} {{/* range .Schema.IncludeFormJS */}}
