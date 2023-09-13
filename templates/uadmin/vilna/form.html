@@ -1323,23 +1323,16 @@ $('.delete-file-btn').click(function(e){
 </script>
 <script type="text/javascript">
   arrayVariable = {{ .Menu }};
-  console.log(arrayVariable);
   var content = "";
   for (i = 0; i < arrayVariable.length; i++) {
       if(arrayVariable[i].Hidden){
           continue;
       }
-      content += '<li><a href="' + {{ .RootURL }} + '/' + arrayVariable[i].URL + '"><i class="fa fa-home"></i>' + arrayVariable[i].MenuName + '<span class="fa"></span></a>';
+      console.log(arrayVariable[i].URL);
+      content += '<li><a href="' + {{$RootURL}} + arrayVariable[i].URL + '"><i class="fa fa-home"></i>' + arrayVariable[i].MenuName + '<span class="fa"></span></a>';
       content += '</li>';
   }
   $('#sidebar-list').html(content);
-  // <li><a><i className="fa fa-home"></i> Home <span className="fa fa-chevron-down"></span></a>
-  //     <ul className="nav child_menu">
-  //         <li><a href="index.html">Dashboard</a></li>
-  //         <li><a href="index2.html">Dashboard2</a></li>
-  //         <li><a href="index3.html">Dashboard3</a></li>
-  //     </ul>
-  // </li>
 </script>
     {{range .Schema.IncludeFormJS}}
     <script src="{{.}}" charset="utf-8"></script>

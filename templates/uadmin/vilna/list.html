@@ -792,7 +792,7 @@
     $('.image_trigger').click(function(){
       var a = $(this).attr('src');
       var header = $(this).parent().parent().find('td').find('a.ID');
-      console.log(header);
+      // console.log(header);
       var content = "";
       var rawFile = a.substr(0,a.lastIndexOf(".")) + "_raw" + a.substr(a.lastIndexOf("."));
 
@@ -955,13 +955,6 @@
       content += '</li>';
   }
   $('#sidebar-list').html(content);
-  // <li><a><i className="fa fa-home"></i> Home <span className="fa fa-chevron-down"></span></a>
-  //     <ul className="nav child_menu">
-  //         <li><a href="index.html">Dashboard</a></li>
-  //         <li><a href="index2.html">Dashboard2</a></li>
-  //         <li><a href="index3.html">Dashboard3</a></li>
-  //     </ul>
-  // </li>
 </script>
 </body>
 </html>

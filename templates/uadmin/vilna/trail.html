@@ -47,7 +47,7 @@
                 }
                 
                 $("pre#trail").html($("pre#trail").html() + this_response);
-                console.log($(document).height() - $(window).height() - $(document).scrollTop());
+                // console.log($(document).height() - $(window).height() - $(document).scrollTop());
                 if (($(document).height() - $(window).height() - $(document).scrollTop()) < 50 || justLoaded) {
                     $("html, pre").animate({ scrollTop: $(document).height() }, 200);
                     justLoaded = false;
