@@ -1110,7 +1110,7 @@ if (window.tinymce) {
           }
           hljs.highlightBlock(block);
           // TODO: Indent depending on Language
-          console.log(block.result.language);
+          // console.log(block.result.language);
         });
       });
 
@@ -1210,7 +1210,7 @@ function imageCrop(){
   $('.image_trigger').click(function(){
     var a = $(this).attr('src');
     var header = $(this).parent().parent().find('td').find('a.ID');
-    console.log(header);
+    // console.log(header);
     var content = "";
     var rawFile = a.substr(0,a.lastIndexOf(".")) + "_raw" + a.substr(a.lastIndexOf("."));
 

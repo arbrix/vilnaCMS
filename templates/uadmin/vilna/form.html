@@ -4,27 +4,27 @@
     <title>{{.SiteName}} - {{.Schema.Name}}</title>
     <link rel="shortcut icon" href="{{.FavIcon}}"/>
 
-  <!-- Bootstrap -->
-  <link href="/static/uadmin/assets/gentelella/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="/static/uadmin/assets/gentelella/font-awesome.min.css" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="/static/uadmin/assets/gentelella/nprogress.css" rel="stylesheet">
-  <!-- iCheck -->
-  <link href="/static/uadmin/assets/gentelella/green.css" rel="stylesheet">
-
-  <!-- bootstrap-progressbar -->
-  <link href="/static/uadmin/assets/gentelella/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-  <!-- JQVMap -->
-  <link href="/static/uadmin/assets/gentelella/jqvmap.min.css" rel="stylesheet"/>
-  <!-- bootstrap-daterangepicker -->
-  <link href="/static/uadmin/assets/gentelella/daterangepicker.css" rel="stylesheet">
-
-  <!-- Custom Theme Style -->
-  <link href="/static/uadmin/assets/gentelella/custom.min.css" rel="stylesheet">
-  <link href="/static/uadmin/assets/gentelella/dataTables.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/uadmin/assets/gentelella/buttons.bootstrap.min.css" rel="stylesheet">
-  <link href="/static/uadmin/assets/gentelella/vilna.css" rel="stylesheet">
+   <!-- Bootstrap -->
+   <link href="/static/uadmin/assets/gentelella/bootstrap.min.css" rel="stylesheet">
+   <!-- Font Awesome -->
+   <link href="/static/uadmin/assets/gentelella/font-awesome.min.css" rel="stylesheet">
+   <!-- NProgress -->
+   <link href="/static/uadmin/assets/gentelella/nprogress.css" rel="stylesheet">
+   <!-- iCheck -->
+   <link href="/static/uadmin/assets/gentelella/green.css" rel="stylesheet">
+ 
+   <!-- bootstrap-progressbar -->
+   <link href="/static/uadmin/assets/gentelella/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+   <!-- JQVMap -->
+   <link href="/static/uadmin/assets/gentelella/jqvmap.min.css" rel="stylesheet"/>
+   <!-- bootstrap-daterangepicker -->
+   <link href="/static/uadmin/assets/gentelella/daterangepicker.css" rel="stylesheet">
+ 
+   <!-- Custom Theme Style -->
+   <link href="/static/uadmin/assets/gentelella/custom.min.css" rel="stylesheet">
+   <link href="/static/uadmin/assets/gentelella/dataTables.bootstrap.min.css" rel="stylesheet">
+   <link href="/static/uadmin/assets/gentelella/buttons.bootstrap.min.css" rel="stylesheet">
+   <link href="/static/uadmin/assets/gentelella/vilna.css" rel="stylesheet">
     <style type="text/css" media="all">
 .hide-text {
   color: rgba(0,0,0,0) !important;
@@ -399,9 +399,9 @@
                           <i class="fa fa-times" style="color:red"></i>
                         </div>
                         {{end}}
-                        <div onclick="$(this).find('input').click();" class="material-switch" style="padding-left:15px;padding-top:5px">
-                          <input {{ if .Required }} required {{ end }} {{if eq $is_readonly false}}name="{{.Name}}"{{end}} type="checkbox" {{if .Value}}checked{{end}} {{if $is_readonly}} disabled {{end}} />
-                          <label  class="label-primary"></label>
+                        <div class="item_check" style="padding-left:15px;padding-top:5px">
+                          <input onclick="$(this).find('input').click();" {{ if .Required }} required {{ end }} {{if eq $is_readonly false}}name="{{.Name}}"{{end}} type="checkbox" {{if .Value}}checked{{end}} {{if $is_readonly}} disabled {{end}} />
+                          <!-- <label  class="label-primary"></label> -->
                         </div>
                       </div>
                       {{ if eq .Help "" }}{{ else }}<span class="text-muted" style="font-size:12px;"><i class="fa fa-question-circle"></i> {{.Help}}</span>{{ end }}
@@ -784,6 +784,9 @@
     <script src="/static/uadmin/assets/js/staticdata.js"></script>
     <script src="/static/uadmin/assets/cropper/cropper.min.js"></script>
     <script src="/static/uadmin/assets/tinymce_4.7.1/js/tinymce.min.js" charset="utf-8"></script>
+
+    <!-- Custom Theme Scripts -->
+<script src="/static/uadmin/assets/js/gentelella/custom.min.js"></script>
     <script type="text/javascript">
       // Check for Mobile and tablet
       window.mobileAndTabletcheck = function() {
@@ -1124,7 +1127,7 @@ if (window.tinymce) {
           }
           hljs.highlightBlock(block);
           // TODO: Indent depending on Language
-          console.log(block.result.language);
+          // console.log(block.result.language);
         });
       });
 
@@ -1224,7 +1227,6 @@ function imageCrop(){
   $('.image_trigger').click(function(){
     var a = $(this).attr('src');
     var header = $(this).parent().parent().find('td').find('a.ID');
-    console.log(header);
     var content = "";
     var rawFile = a.substr(0,a.lastIndexOf(".")) + "_raw" + a.substr(a.lastIndexOf("."));
 
@@ -1328,7 +1330,6 @@ $('.delete-file-btn').click(function(e){
       if(arrayVariable[i].Hidden){
           continue;
       }
-      console.log(arrayVariable[i].URL);
       content += '<li><a href="' + {{$RootURL}} + arrayVariable[i].URL + '"><i class="fa fa-home"></i>' + arrayVariable[i].MenuName + '<span class="fa"></span></a>';
       content += '</li>';
   }
