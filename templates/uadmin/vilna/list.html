@@ -680,7 +680,6 @@
         }
       });
 
-      //console.log(buildURL(params));
       //win.open(buildURL(params), "_self");
       win.location.href = buildURL(params);
     };
@@ -702,16 +701,13 @@
         url += "&" + filters.join("&");
       }
 
-      //console.log(url);
       win.open(url, "_self");
     };
   })(window, document, $);
 
 
-  //console.log(pages);
   paginator('pagination_container', {{ .Pagination }}, schemaname);
 
-  // console.log(pages);
   setHeaderTabs(arrayVariableHeader, '#headtab-container', 'col-sm-4');
 
   //var href_ = '{{.RootURL}}'+ $('#camelcaseFixHref').attr('href').toLowerCase()+'/new';
@@ -777,13 +773,11 @@
    */
 
   var search_ = window.location.search;
-  // console.log(search_.search('o=-'));
 
   function getPValue(){
     if (search_.search("p=") >= 0){
       var a = 0;
       a = search_.split("p=")[1];
-      // console.log(a);
       return a;
     }
   }
@@ -792,7 +786,6 @@
     $('.image_trigger').click(function(){
       var a = $(this).attr('src');
       var header = $(this).parent().parent().find('td').find('a.ID');
-      console.log(header);
       var content = "";
       var rawFile = a.substr(0,a.lastIndexOf(".")) + "_raw" + a.substr(a.lastIndexOf("."));
 
@@ -943,6 +936,18 @@
     }
   });
 </script>
-
+<script type="text/javascript">
+  arrayVariable = {{ .Menu }};
+  console.log(arrayVariable);
+  var content = "";
+  for (i = 0; i < arrayVariable.length; i++) {
+      if(arrayVariable[i].Hidden){
+          continue;
+      }
+      content += '<li><a href="' + arrayVariable[i].URL + '"><i class="fa fa-home"></i>' + arrayVariable[i].MenuName + '<span class="fa"></span></a>';
+      content += '</li>';
+  }
+  $('#sidebar-list').html(content);
+</script>
 </body>
 </html>
