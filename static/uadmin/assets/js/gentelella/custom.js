@@ -70,7 +70,7 @@ var setContentHeight = function () {
 };
 
   $SIDEBAR_MENU.find('a').on('click', function(ev) {
-	  console.log('clicked - sidebar_menu');
+	//   console.log('clicked - sidebar_menu');
         var $li = $(this).parent();
 
         if ($li.is('.active')) {
@@ -101,7 +101,7 @@ var setContentHeight = function () {
 
 // toggle small or large menu 
 $MENU_TOGGLE.on('click', function() {
-		console.log('clicked - menu toggle');
+		// console.log('clicked - menu toggle');
 		
 		if ($BODY.hasClass('nav-md')) {
 			$SIDEBAR_MENU.find('li.active ul').hide();
@@ -342,7 +342,7 @@ if (typeof NProgress != 'undefined') {
 		
 		if( typeof ($.plot) === 'undefined'){ return; }
 		
-		console.log('init_flot_chart');
+		// console.log('init_flot_chart');
 		
 		
 		
@@ -548,14 +548,14 @@ if (typeof NProgress != 'undefined') {
         
 		
         if ($("#chart_plot_01").length){
-			console.log('Plot1');
+			// console.log('Plot1');
 			
 			$.plot( $("#chart_plot_01"), [ arr_data1, arr_data2 ],  chart_plot_01_settings );
 		}
 		
 		
 		if ($("#chart_plot_02").length){
-			console.log('Plot2');
+			// console.log('Plot2');
 			
 			$.plot( $("#chart_plot_02"), 
 			[{ 
@@ -571,7 +571,7 @@ if (typeof NProgress != 'undefined') {
 		}
 		
 		if ($("#chart_plot_03").length){
-			console.log('Plot3');
+			// console.log('Plot3');
 			
 			
 			$.plot($("#chart_plot_03"), [{
@@ -595,7 +595,7 @@ if (typeof NProgress != 'undefined') {
 	function init_starrr() {
 		
 		if( typeof (starrr) === 'undefined'){ return; }
-		console.log('init_starrr');
+		// console.log('init_starrr');
 		
 		$(".stars").starrr();
 
@@ -616,11 +616,10 @@ if (typeof NProgress != 'undefined') {
 	
 	function init_JQVmap(){
 
-		//console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );	
 		
 		if(typeof (jQuery.fn.vectorMap) === 'undefined'){ return; }
 		
-		console.log('init_JQVmap');
+		// console.log('init_JQVmap');
 	     
 			if ($('#world-map-gdp').length ){
 		 
@@ -1762,10 +1761,10 @@ if (typeof NProgress != 'undefined') {
 		function init_daterangepicker_reservation() {
 	      
 			if( typeof ($.fn.daterangepicker) === 'undefined'){ return; }
-			console.log('init_daterangepicker_reservation');
+			// console.log('init_daterangepicker_reservation');
 		 
 			$('#reservation').daterangepicker(null, function(start, end, label) {
-			  console.log(start.toISOString(), end.toISOString(), label);
+			//   console.log(start.toISOString(), end.toISOString(), label);
 			});
 
 			$('#reservation-time').daterangepicker({
@@ -1783,7 +1782,7 @@ if (typeof NProgress != 'undefined') {
 		function init_SmartWizard() {
 			
 			if( typeof ($.fn.smartWizard) === 'undefined'){ return; }
-			console.log('init_SmartWizard');
+			// console.log('init_SmartWizard');
 			
 			$('#wizard').smartWizard();
 
@@ -1803,7 +1802,7 @@ if (typeof NProgress != 'undefined') {
 	  function init_validator () {
 		 
 		if( typeof (validator) === 'undefined'){ return; }
-		console.log('init_validator'); 
+		// console.log('init_validator'); 
 	  
 	  // initialize the validator function
       validator.message.date = 'not a real date';
@@ -1840,7 +1839,7 @@ if (typeof NProgress != 'undefined') {
 		function init_PNotify() {
 			
 			if( typeof (PNotify) === 'undefined'){ return; }
-			console.log('init_PNotify');
+			// console.log('init_PNotify');
 			
 			new PNotify({
 			  title: "PNotify",
@@ -1871,10 +1870,10 @@ if (typeof NProgress != 'undefined') {
 			
 		function init_CustomNotification() {
 			
-			console.log('run_customtabs');
+			// console.log('run_customtabs');
 			
 			if( typeof (CustomTabs) === 'undefined'){ return; }
-			console.log('init_CustomTabs');
+			// console.log('init_CustomTabs');
 			
 			var cnt = 10;
 
@@ -1929,7 +1928,7 @@ if (typeof NProgress != 'undefined') {
 			function init_EasyPieChart() {
 				
 				if( typeof ($.fn.easyPieChart) === 'undefined'){ return; }
-				console.log('init_EasyPieChart');
+				// console.log('init_EasyPieChart');
 				
 				$('.chart').easyPieChart({
 				  easing: 'easeOutElastic',
@@ -1986,11 +1985,11 @@ if (typeof NProgress != 'undefined') {
 		
 		function init_charts() {
 			
-				console.log('run_charts  typeof [' + typeof (Chart) + ']');
+				// console.log('run_charts  typeof [' + typeof (Chart) + ']');
 			
 				if( typeof (Chart) === 'undefined'){ return; }
 				
-				console.log('init_charts');
+				// console.log('init_charts');
 			
 				
 				Chart.defaults.global.legend = {
@@ -2392,7 +2391,7 @@ if (typeof NProgress != 'undefined') {
 		function init_compose() {
 		
 			if( typeof ($.fn.slideToggle) === 'undefined'){ return; }
-			console.log('init_compose');
+			// console.log('init_compose');
 		
 			$('#compose, .compose-close').click(function(){
 				$('.compose').slideToggle();
@@ -2405,7 +2404,7 @@ if (typeof NProgress != 'undefined') {
 		    function  init_calendar() {
 					
 				if( typeof ($.fn.fullCalendar) === 'undefined'){ return; }
-				console.log('init_calendar');
+				// console.log('init_calendar');
 					
 				var date = new Date(),
 					d = date.getDate(),
@@ -2506,10 +2505,10 @@ if (typeof NProgress != 'undefined') {
 		/* DATA TABLES */
 			
 			function init_DataTables() {
-				console.log('run_datatables');
+				// console.log('run_datatables');
 				
 				if( typeof ($.fn.DataTable) === 'undefined'){ return; }
-				console.log('init_DataTables');
+				// console.log('init_DataTables');
 				
 				var handleDataTableButtons = function() {
 				  if ($("#datatable-buttons").length) {
@@ -2594,7 +2593,7 @@ if (typeof NProgress != 'undefined') {
 		function init_morris_charts() {
 			
 			if( typeof (Morris) === 'undefined'){ return; }
-			console.log('init_morris_charts');
+			// console.log('init_morris_charts');
 			
 			if ($('#graph_bar').length){ 
 			
@@ -2754,7 +2753,7 @@ if (typeof NProgress != 'undefined') {
 		function init_echarts() {
 		
 				if( typeof (echarts) === 'undefined'){ return; }
-				console.log('init_echarts');
+				// console.log('init_echarts');
 			
 		
 				  var theme = {
