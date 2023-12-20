@@ -9,6 +9,10 @@ func ApplySystemCustomization() {
 	setDefaultLang()
 }
 
+func SetDefaultModelLoadOnDashboard(model interface{}) {
+	uadmin.DefaultModelLoad = model
+}
+
 func setDefaultTheme() {
 	customTheme := "vilna"
 	// NOTE: This code works only if database does not exist yet.
