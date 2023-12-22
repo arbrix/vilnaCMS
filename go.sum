@@ -2,6 +2,8 @@ github.com/arbrix/uadmin v0.0.0-20230809113248-9783b4fc887a h1:Cp1xWDdjZj9ACM16Z
 github.com/arbrix/uadmin v0.0.0-20230809113248-9783b4fc887a/go.mod h1:Ex2sXNHlok/aU+ZVrIeY6DbfE9T3sAD5D+ssY3th3Dk=
 github.com/arbrix/uadmin v0.0.0-20231220095850-6e95b17da365 h1:cfXjymXQo/aTsColt2KJdn1PjM5YJ0sB2E2LGASys5w=
 github.com/arbrix/uadmin v0.0.0-20231220095850-6e95b17da365/go.mod h1:Ex2sXNHlok/aU+ZVrIeY6DbfE9T3sAD5D+ssY3th3Dk=
+github.com/arbrix/uadmin v0.0.0-20231222092440-f23b0451baf2 h1:dAsMTi8dnMtgef2ayVoGGm4fevHz8u9TmumAyJGC87c=
+github.com/arbrix/uadmin v0.0.0-20231222092440-f23b0451baf2/go.mod h1:Ex2sXNHlok/aU+ZVrIeY6DbfE9T3sAD5D+ssY3th3Dk=
 github.com/boombuler/barcode v1.0.1-0.20190219062509-6c824513bacc/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
 github.com/boombuler/barcode v1.0.1 h1:NDBbPmhS+EqABEs5Kg3n/5ZNjy73Pz7SIV+KCeqyXcs=
 github.com/boombuler/barcode v1.0.1/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
