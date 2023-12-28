@@ -1,12 +1,33 @@
 package customization
 
-import "github.com/arbrix/uadmin"
+import (
+	"encoding/json"
+	"github.com/arbrix/uadmin"
+	"os"
+	"strconv"
+)
+
+type config struct {
+	Port int `json:"AppPort"`
+}
 
 // ApplySystemCustomization invokes functions for changing default language, rootURL, UI theme, etc.
-func ApplySystemCustomization() {
+func ApplySystemCustomization(pathToConf string) error {
+	configFile, err := os.Open(pathToConf)
+	if err != nil {
+		return err
+	}
+
+	customCfg := &config{}
+	decoder := json.NewDecoder(configFile)
+	if err = decoder.Decode(customCfg); err != nil {
+		return err
+	}
 	setDefaultTheme()
 	setRootURL()
 	setDefaultLang()
+	setPort(customCfg.Port)
+	return nil
 }
 
 func SetDefaultModelLoadOnDashboard(model interface{}) {
@@ -47,6 +68,24 @@ func setRootURL() {
 	uadmin.Get(&setting, "code = ?", "uAdmin.RootURL")
 	if setting.Value != adminURL {
 		setting.ParseFormValue([]string{adminURL})
+		setting.Save()
+	}
+
+}
+
+func setPort(port int) {
+	// NOTE: This code works only if database does not exist yet.
+	if uadmin.Port != port {
+		uadmin.Port = port
+	}
+	// ----- IF YOU RUN YOUR APPLICATION AGAIN, DO THIS BELOW -----
+
+	// Assign the port value
+	setting := uadmin.Setting{}
+	portStr := strconv.Itoa(port)
+	uadmin.Get(&setting, "code = ?", "uAdmin.Port")
+	if setting.Value != portStr {
+		setting.ParseFormValue([]string{portStr})
 		setting.Save()
 	}
 
