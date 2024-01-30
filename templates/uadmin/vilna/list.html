@@ -403,62 +403,29 @@
   </div>
 </div>
 
-<!-- jQuery -->
-<script src="/static/uadmin/assets/js/gentelella/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="/static/uadmin/assets/js/gentelella/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="/static/uadmin/assets/js/gentelella/fastclick.js"></script>
-<!-- NProgress -->
-<script src="/static/uadmin/assets/js/gentelella/nprogress.js"></script>
-<!-- Chart.js -->
-<script src="/static/uadmin/assets/js/gentelella/Chart.min.js"></script>
-<!-- gauge.js -->
-<script src="/static/uadmin/assets/js/gentelella/gauge.min.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="/static/uadmin/assets/js/gentelella/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="/static/uadmin/assets/js/gentelella/icheck.min.js"></script>
-<!-- Skycons -->
-<script src="/static/uadmin/assets/js/gentelella/skycons.js"></script>
-<!-- Flot -->
-<script src="/static/uadmin/assets/js/gentelella/flot/jquery.flot.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/flot/jquery.flot.pie.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/flot/jquery.flot.time.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/flot/jquery.flot.stack.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/flot/jquery.flot.resize.js"></script>
-<!-- Flot plugins -->
-<script src="/static/uadmin/assets/js/gentelella/jquery.flot.orderBars.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/jquery.flot.spline.min.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/curvedLines.js"></script>
-<!-- DateJS -->
-<script src="/static/uadmin/assets/js/gentelella/date.js"></script>
-<!-- JQVMap -->
-<script src="/static/uadmin/assets/js/gentelella/jquery.vmap.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/jquery.vmap.world.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/jquery.vmap.sampledata.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="/static/uadmin/assets/js/gentelella/moment.min.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/daterangepicker.js"></script>
-<script src="/static/uadmin/assets/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var RootURL = '{{.RootURL}}';
+</script>
+<script src="/static/uadmin/assets/js/jquery.min.js"></script>
 <script src="/static/uadmin/assets/js/tether.min.js" ></script>
 <script src="/static/uadmin/assets/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+<script src="/static/uadmin/assets/select2/js/select2.full.min.js"></script>
+
+<script src="/static/uadmin/assets/highlight.js/highlight.pack.js"></script>
+
 <script src="/static/uadmin/assets/moment.js"></script>
 <script src="/static/uadmin/assets/datepicker/js/bootstrap-datetimepicker.min.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/jquery.dataTables.min.js"></script>
-<script src="/static/uadmin/assets/js/gentelella/dataTables.bootstrap.min.js"></script>
+
 <script src="/static/uadmin/assets/admin/main.js"></script>
 <script src="/static/uadmin/assets/js/wow.js"></script>
+
 <script src="/static/uadmin/assets/js/floatHead.min.js"></script>
 <script src="/static/uadmin/assets/js/staticdata.js"></script>
 <script src="/static/uadmin/assets/cropper/cropper.min.js"></script>
+<script src="/static/uadmin/assets/tinymce_4.7.1/js/tinymce.min.js" charset="utf-8"></script>
 
-<!-- Custom Theme Scripts -->
-<script src="/static/uadmin/assets/js/gentelella/custom.min.js"></script>
-<script type="text/javascript">
-  // $("#listtable").DataTable();
-  var RootURL = '{{.RootURL}}';
-</script>
 {{range .Schema.IncludeListJS}}
 <script src="{{.}}" charset="utf-8"></script>
 {{end}} {{/* range .Schema.IncludeListJS */}}
