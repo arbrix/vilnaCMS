@@ -1299,7 +1299,7 @@ function cropImage() {
 
     });
     $("#myModal").modal("hide");
-    document.location.reload(true);
+    setTimeout(function () { document.location.reload(true);},1000);
 };
 $("#btnCropImage").on("click", cropImage);
 
