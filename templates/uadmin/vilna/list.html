@@ -9,6 +9,8 @@
 
   <title>{{.SiteName}} - {{.Schema.Name}}</title>
 
+  <link rel="stylesheet" href="/static/uadmin/assets/cropper/cropper.min.css">
+
   <!-- Bootstrap -->
   <link href="/static/uadmin/assets/gentelella/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -25,15 +27,13 @@
   <!-- bootstrap-daterangepicker -->
   <link href="/static/uadmin/assets/gentelella/daterangepicker.css" rel="stylesheet">
 
-     <!-- cropper css -->
-     <link rel="stylesheet" href="/static/uadmin/assets/cropper/cropper.min.css">
-     
   <!-- Custom Theme Style -->
   <link href="/static/uadmin/assets/gentelella/custom.min.css" rel="stylesheet">
   <link href="/static/uadmin/assets/gentelella/dataTables.bootstrap.min.css" rel="stylesheet">
   <link href="/static/uadmin/assets/gentelella/buttons.bootstrap.min.css" rel="stylesheet">
   <link href="/static/uadmin/assets/gentelella/vilna.css" rel="stylesheet">
 
+  <script src="/static/uadmin/assets/cropper/cropper.min.js"></script>
 </head>
 
 <body class="nav-md">
@@ -426,7 +426,7 @@
 
 <script src="/static/uadmin/assets/js/floatHead.min.js"></script>
 <script src="/static/uadmin/assets/js/staticdata.js"></script>
-<script src="/static/uadmin/assets/cropper/cropper.min.js"></script>
+
 <script src="/static/uadmin/assets/tinymce_4.7.1/js/tinymce.min.js" charset="utf-8"></script>
 
 <!-- Custom Theme Scripts -->
@@ -465,8 +465,6 @@
         $("#search").val(GET["q"]);
       }
     }
-
-
 
     (function($){
       "use strict";
@@ -762,7 +760,8 @@
       var content = "";
       var rawFile = a.substr(0,a.lastIndexOf(".")) + "_raw" + a.substr(a.lastIndexOf("."));
 
-      content += '<center><img src="'+rawFile+'" style="max-width:70%;max-height:80%;" id="imgRawImage"/></center>';
+      // trick to force browser load img with no cache
+      content += '<center><img src="'+rawFile+"?"+(new Date()).getTime()+'" style="max-width:70%;max-height:80%;" id="imgRawImage"/></center>';
       $('#myModal>div>div>.modal-body').html(content);
       $('#myModal>div>div>div>.modal-title').text(header.text());
       $('#myModal [name=img_id]').val($(this).parent().parent().find('td [data-id]').data('id'));
@@ -863,6 +862,10 @@
 
   function cropImage() {
     var imageSource = $("#imgRawImage").attr("src");
+    // remove timestamp if exists
+    if (imageSource.includes("?")) {
+      imageSource = imageSource.split("?")[0];
+    };
     var top, left, bottom, right;
     var data = cropper.getData();
     // left = cropper.cropBoxData.left - cropper.canvasData.left;
@@ -883,6 +886,7 @@
 
     });
     $("#myModal").modal("hide");
+    location.reload(true);
   }
   $("#btnCropImage").on("click", cropImage);
 
@@ -911,7 +915,6 @@
 </script>
 <script type="text/javascript">
   arrayVariable = {{ .Menu }};
-  console.log(arrayVariable);
   var content = "";
   for (i = 0; i < arrayVariable.length; i++) {
       if(arrayVariable[i].Hidden){
