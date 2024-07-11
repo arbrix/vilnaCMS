@@ -3,8 +3,8 @@ module github.com/arbrix/vilnaCMS
 go 1.20
 
 require (
-	github.com/arbrix/uadmin v0.0.0-20240428161724-803e13ec9836
-	github.com/stretchr/testify v1.8.4
+	github.com/arbrix/uadmin v0.0.0-20240711115105-d2e24c1ebfac
+	github.com/stretchr/testify v1.9.0
 )
 
 require (
@@ -19,6 +19,7 @@ require (
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
+	github.com/muesli/crunchy v0.4.1-0.20210519044311-9cd68953298f // indirect
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/pquerna/otp v1.4.0 // indirect
@@ -28,6 +29,7 @@ require (
 	github.com/thlib/go-timezone-local v0.0.0-20210907160436-ef149e42d28e // indirect
 	github.com/uadmin/rrd v0.0.0-20200219090641-e438da1b7640 // indirect
 	github.com/uadmin/uadmin v0.10.1 // indirect
+	github.com/xrash/smetrics v0.0.0-20170218160415-a3153f7040e9 // indirect
 	github.com/xuri/efp v0.0.0-20220603152613-6918739fd470 // indirect
 	github.com/xuri/excelize/v2 v2.7.1 // indirect
 	github.com/xuri/nfp v0.0.0-20220409054826-5e722a1d9e22 // indirect
