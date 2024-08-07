@@ -30,9 +30,6 @@
    <link rel="stylesheet" href="/static/uadmin/assets/datepicker/css/bootstrap-datetimepicker.min.css">
    <link rel="stylesheet" href="/static/uadmin/assets/select2/css/select2.min.css">
     <style type="text/css" media="all">
-.hide-text {
-  color: rgba(0,0,0,0) !important;
-}
 
       /* fix for indentions in highlight hs */
       td.hljs-ln-code {
@@ -513,7 +510,7 @@
                           <i class="fa fa-times" style="color:red"></i>
                         </div>
                         {{end}}
-                        <input {{if .Required}} required {{end}} class="form-control strings hide-text" name="{{.Name}}" type="text" value="{{.Value}}" {{if $is_readonly}} readonly {{end}} {{ if eq .Pattern "" }}{{ else }}pattern="{{ .Pattern }}" {{ if eq .PatternMsg "" }}{{ else }}oninvalid="setCustomValidity('{{.PatternMsg}}')"{{ end }}{{ end }} data-pswd-field />
+                        <input {{if .Required}} required {{end}} class="form-control strings" name="{{.Name}}" type="password" value="{{.Value}}" {{if $is_readonly}} readonly {{end}} {{ if eq .Pattern "" }}{{ else }}pattern="{{ .Pattern }}" {{ if eq .PatternMsg "" }}{{ else }}oninvalid="setCustomValidity('{{.PatternMsg}}')"{{ end }}{{ end }} data-pswd-field />
                         <span class="input-group-btn">
                           <button type="button" class="btn btn-info" data-pswd-state="hidden">
                             <i class="fa fa-eye"></i>
@@ -1069,8 +1066,7 @@ $("[data-pswd-state]").on("click", function(e){
     $pswd = $this.closest(".pswd-holder").find("input[data-pswd-field]"),
     state = $this.attr("data-pswd-state");
   if (state === "hidden") {
-    //$pswd[0].type = "text";
-    $pswd.removeClass("hide-text");
+    $pswd[0].type = "text";
     $this
       .attr("data-pswd-state", "shown")
       .addClass("btn-danger")
@@ -1079,8 +1075,7 @@ $("[data-pswd-state]").on("click", function(e){
       .addClass("fa-eye-slash")
       .removeClass("fa-eye");
   } else {
-    //$pswd[0].type = "password";
-    $pswd.addClass("hide-text");
+    $pswd[0].type = "password";
     $this
       .attr("data-pswd-state", "hidden")
       .addClass("btn-info")
