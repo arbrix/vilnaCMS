@@ -1,5 +1,5 @@
-github.com/arbrix/uadmin v0.0.0-20240711115105-d2e24c1ebfac h1:V2eXWe6v8PrfjuatICw5pNoGWpojawKPi9KtcCzQbXU=
-github.com/arbrix/uadmin v0.0.0-20240711115105-d2e24c1ebfac/go.mod h1:wBd/KTrc5Ks5G3Y3etYnsYJqccT7wqM8tm9DvtY45RY=
+github.com/arbrix/uadmin v0.0.0-20240807091644-89a3bd1152d1 h1:dN064DQK6fWVEQyh0KTbqy83CTjry8VdLUxYagJFU6Y=
+github.com/arbrix/uadmin v0.0.0-20240807091644-89a3bd1152d1/go.mod h1:wBd/KTrc5Ks5G3Y3etYnsYJqccT7wqM8tm9DvtY45RY=
 github.com/boombuler/barcode v1.0.1-0.20190219062509-6c824513bacc/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
 github.com/boombuler/barcode v1.0.1 h1:NDBbPmhS+EqABEs5Kg3n/5ZNjy73Pz7SIV+KCeqyXcs=
 github.com/boombuler/barcode v1.0.1/go.mod h1:paBWMcWSl3LHKBqUq+rly7CNSldXjb2rDl3JlRe0mD8=
