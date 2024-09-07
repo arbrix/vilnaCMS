@@ -87,6 +87,17 @@
               {{end}}
             </div>
           </div>
+          {{if .IsUpdated}}
+          {{if .Status}}
+          <div class="alert alert-warning">
+            <strong><i class="fa fa-exclamation"></i></strong>&nbsp;{{.Notif}}
+          </div>
+          {{else}}
+          <div class="alert alert-info">
+            <strong>{{Tf "uadmin/system" .Language.Code "Info:"}}</strong>&nbsp;&nbsp;{{Tf "uadmin/system" .Language.Code "Changes Successfully Applied!"}}
+          </div>
+          {{end}} {{/* if .Status */}}
+        {{end}} {{/* if .IsUpdated */}}
           <div class="col-sm-9">
             <div class="form-horizontal form-signin">
             {{range $fIndex, $value := .Schema.Fields}}
@@ -159,17 +170,6 @@
                 </div>
               </div>
             </div>
-            {{if .IsUpdated}}
-              {{if .Status}}
-              <div class="alert alert-warning">
-                <strong><i class="fa fa-exclamation"></i></strong>&nbsp;{{.Notif}}
-              </div>
-              {{else}}
-              <div class="alert alert-info">
-                <strong>{{Tf "uadmin/system" .Language.Code "Info:"}}</strong>&nbsp;&nbsp;{{Tf "uadmin/system" .Language.Code "Changes Successfully Applied!"}}
-              </div>
-              {{end}} {{/* if .Status */}}
-            {{end}} {{/* if .IsUpdated */}}
           </div>
         </form>
       </div>
