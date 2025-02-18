@@ -107,6 +107,11 @@
           <li id="trigger_{{.Name}}" class="tab_button" onclick="update_inline('InlineModelName');"><a style="margin:0px;" href="#{{.Name}}" aria-controls="{{.Name}}" role="tab" data-toggle="tab" class="camelcaseFix  trigger_hash">{{.Name}}</a></li>
           {{end}}
           {{end}}
+          {{ if .Schema.CSVImporter }}
+          <li id="trigger_csv_import" class="tab_button">
+            <a style="margin:0px;" href="#csv_import" aria-controls="csv_import" role="tab" data-toggle="tab">CSV Import</a>
+          </li>
+          {{end}}
         </ul>
         {{ $MainModel := .Schema.Name }}
         {{ $MainModelS := .Schema.ModelName }}
@@ -580,6 +585,30 @@
             </div>
           </form>
         </div>
+        {{ if .Schema.CSVImporter }}
+        {{ $CSVFileInfo := "A CSV file should respect the fields order of this form"}}
+        {{ $HasHeaders := "CSV file without headers" }}
+        <div id="csv_import" role="tabpanel" class="tab-pane">
+          <div class="col-sm-12">
+            <div class="col-sm-12" style="margin-top: 20px;">
+              <span class="camelcaseFix">{{$CSVFileInfo}}</span>
+            </div>
+            <div class="col-sm-12" style="margin-bottom: 20px;">
+              <input type="checkbox" id="fileWithoutHeaders"><span class="camelcaseFix" style="margin-left: 10px">{{$HasHeaders}}</span>
+            </div>
+            <div class="input-group" style="margin-top: 20px;">
+              <label class="input-group-btn">
+                <span class="btn btn-primary">
+                  Browse&hellip; <input id="csv_file" name="Attachment" type="file" accept=".csv" style="display: none;">
+                </span>
+              </label>
+              <input id="csv-filename" class="form-control" type="text" readonly>
+            </div>
+            <div id="csv_editor" style="margin-top: 20px;"></div>
+            <button id="save_csv" class="btn btn-primary" type="button" style="margin-top: 20px;">Save to Database</button>
+          </div>
+        </div>
+        {{ end }}
         {{ if eq .Schema.ModelID 0 }}
         {{ else }}
         {{ range $inlineIndex, $inlineSchema := .Schema.Inlines }}
@@ -1352,9 +1381,191 @@ $('.delete-file-btn').click(function(e){
 
   $('#' + inputID).val("delete");
 });
-
-
 </script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#csv_file').on('change', function(e) {
+      processCSVFile(e.target.files[0]);
+    });
+
+    $('#fileWithoutHeaders').on('change', function() {
+      // Reprocess the CSV file when the checkbox state changes
+      var fileInput = $('#csv_file')[0];
+      if (fileInput.files.length > 0) {
+        processCSVFile(fileInput.files[0]);
+      }
+    });
+  });
+
+  function processCSVFile(file) {
+    var maxSizeInBytes = 5 * 1024 * 1024; // 5 MB limit
+
+    if (file.size > maxSizeInBytes) {
+      alert('File size exceeds the 5 MB limit.');
+      return;
+    }
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      var delimiter = ';';
+      var csv = e.target.result;
+      var lines = csv.split('\n');
+      var hasHeaders = $('#fileWithoutHeaders').is(':checked') ? false : true;
+
+      // Create table structure
+      var table = '<table class="table table-bordered table-striped" id="csv-table">';
+
+      if (hasHeaders) {
+        var headers = lines[0].split(delimiter);
+        table += '<thead><tr>';
+        table += '<th></th><th></th>'; // idx + language
+        headers.forEach(function(header) {
+          table += '<th>' + header.trim() + '</th>';
+        });
+        table += '</tr></thead>';
+      }
+
+      table += '<tbody>';
+      // Add data rows
+      var startingLine = hasHeaders ? 1 : 0
+      for (var i = startingLine; i < lines.length; i++) {
+        if (lines[i].trim() !== '') {
+          var cells = lines[i].split(delimiter);
+          table += '<tr>';
+          table += '<td>' + i + '</td>';
+          table += '<td>uk</td>';
+          cells.forEach(function(cell) {
+            table += '<td contenteditable="true" style="background-color: #fff">' + cell.trim() + '</td>';
+          });
+          table += '</tr>';
+
+          // Add transliterated row
+          var transliteratedCells = cells.map(function(cell) {
+            return transliterate(cell.trim());
+          });
+          table += '<tr class="transliterated">';
+          table += '<td>' + i + '</td>';
+          table += '<td>en</td>';
+          transliteratedCells.forEach(function(cell) {
+            table += '<td contenteditable="true" style="background-color: #fff">' + cell + '</td>';
+          });
+          table += '</tr>';
+        }
+      }
+      table += '</tbody></table>';
+      $('#csv_editor').html(table);
+    };
+
+    reader.readAsText(file);
+  }
+
+  // Transliteration function
+  function transliterate(text) {
+    replaceBeginnings = function(text, ucUA, lcUA, beginningLA) {
+        firstWhenAllAreUppercase = new RegExp(`(^|\\s)(${ucUA})(?=[А-ЯҐЄІЇ]|\\s|$)`, 'g')
+        onlyFirstIsUppercase = new RegExp(`(^|\\s)(${ucUA})(?=[а-яґєії]|\\s|$)`, 'g')
+        firstIsLowercase = new RegExp(`(^|\\s)(${lcUA})`, 'g')
+        return text
+            // first check the first letter of entire uppercase words
+            .replace(firstWhenAllAreUppercase, (m, p1) => p1 + beginningLA.toUpperCase())
+            // then check the first letter of words with only first letter is uppercase
+            .replace(onlyFirstIsUppercase, (m, p1) => p1 + beginningLA)
+            // then check the first letter of words with first letter is lowercase
+            .replace(firstIsLowercase, (m, p1) => p1 + beginningLA.toLowerCase())
+    }
+    replaceRest = function(text, ucUA, lcUA, middleLA) {
+        return text
+            .replace(new RegExp(`${ucUA}`, 'g'), (m) => middleLA.toUpperCase())
+            .replace(new RegExp(`${lcUA}`, 'g'), (m) => middleLA)
+    }
+    text = text
+        .replace(/ЗГ/g, 'ZGH').replace(/Зг/g, 'Zgh').replace(/зг/g, 'zgh')
+        .replace(/[Ььʼ'’‘]/g, '')
+    // because regexes interfere in some cases
+    // the beginning and the rest should be processed separately,
+    text = replaceBeginnings(text, 'Щ', 'щ', 'Shch')
+    text = replaceBeginnings(text, 'Ш', 'ш', 'Sh')
+    text = replaceBeginnings(text, 'Ж', 'ж', 'Zh')
+    text = replaceBeginnings(text, 'Х', 'х', 'Kh')
+    text = replaceBeginnings(text, 'Ц', 'ц', 'Ts')
+    text = replaceBeginnings(text, 'Ч', 'ч', 'Ch')
+    text = replaceBeginnings(text, 'Ю', 'ю', 'Yu')
+    text = replaceBeginnings(text, 'Я', 'я', 'Ya')
+    text = replaceBeginnings(text, 'Є', 'є', 'Ye')
+    text = replaceBeginnings(text, 'Ї', 'ї', 'Yi')
+    text = replaceBeginnings(text, 'Й', 'й', 'Y')
+    text = replaceRest(text, 'Щ', 'щ', 'shch')
+    text = replaceRest(text, 'Ш', 'ш', 'sh')
+    text = replaceRest(text, 'Ж', 'ж', 'zh')
+    text = replaceRest(text, 'Х', 'х', 'kh')
+    text = replaceRest(text, 'Ц', 'ц', 'ts')
+    text = replaceRest(text, 'Ч', 'ч', 'ch')
+    text = replaceRest(text, 'Ю', 'ю', 'iu')
+    text = replaceRest(text, 'Я', 'я', 'ia')
+    text = replaceRest(text, 'Є', 'є', 'ie')
+    text = replaceRest(text, 'Ї', 'ї', 'i')
+    text = replaceRest(text, 'Й', 'й', 'i')
+    text = text
+        .replace(/А/g, 'A').replace(/а/g, 'a')
+        .replace(/Б/g, 'B').replace(/б/g, 'b')
+        .replace(/В/g, 'V').replace(/в/g, 'v')
+        .replace(/Г/g, 'H').replace(/г/g, 'h')
+        .replace(/Ґ/g, 'G').replace(/ґ/g, 'g')
+        .replace(/Д/g, 'D').replace(/д/g, 'd')
+        .replace(/Е/g, 'E').replace(/е/g, 'e')
+        .replace(/З/g, 'Z').replace(/з/g, 'z')
+        .replace(/И/g, 'Y').replace(/и/g, 'y')
+        .replace(/І/g, 'I').replace(/і/g, 'i')
+        .replace(/К/g, 'K').replace(/к/g, 'k')
+        .replace(/Л/g, 'L').replace(/л/g, 'l')
+        .replace(/М/g, 'M').replace(/м/g, 'm')
+        .replace(/Н/g, 'N').replace(/н/g, 'n')
+        .replace(/О/g, 'O').replace(/о/g, 'o')
+        .replace(/П/g, 'P').replace(/п/g, 'p')
+        .replace(/Р/g, 'R').replace(/р/g, 'r')
+        .replace(/С/g, 'S').replace(/с/g, 's')
+        .replace(/Т/g, 'T').replace(/т/g, 't')
+        .replace(/У/g, 'U').replace(/у/g, 'u')
+        .replace(/Ф/g, 'F').replace(/ф/g, 'f')
+    return text;
+  }
+</script>
+
+<script type="text/javascript">
+  var modelName = "{{.Schema.ModelName}}";
+
+  $('#save_csv').on("click", function() {
+    var data = [];
+
+    $('#csv-table tbody tr').each(function() {
+      var lineData = [];
+      $(this).find('td').each(function(i) {
+        lineData.push($(this).text().trim());
+      });
+      data.push(lineData.join(';'));
+    });
+
+    var formData = new FormData();
+    formData.append('m', modelName);
+    formData.append('data', JSON.stringify(data));
+    $.ajax({
+      url: RootURL + 'api/csv_import',
+      method: 'POST',
+      processData: false,
+      contentType: false,
+      data: formData,
+      success: function(response) {
+        window.location.href = RootURL+modelName;
+      },
+      error: function(xhr) {
+        $('#save_csv').after('<span class="text-danger ml-2"><strong>Error:</strong> Failed to import CSV data</span>');
+      }
+    });
+  });
+</script>
+
 <script type="text/javascript">
   arrayVariable = {{ .Menu }};
   var content = "";
