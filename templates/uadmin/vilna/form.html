@@ -596,7 +596,7 @@
             <div class="col-sm-12" style="margin-bottom: 20px;">
               <input type="checkbox" id="fileWithoutHeaders"><span class="camelcaseFix" style="margin-left: 10px">{{$HasHeaders}}</span>
             </div>
-            <div class="input-group" style="margin-top: 20px;">
+            <div class="input-group" style="margin-bottom: 20px;">
               <label class="input-group-btn">
                 <span class="btn btn-primary">
                   Browse&hellip; <input id="csv_file" name="Attachment" type="file" accept=".csv" style="display: none;">
@@ -604,8 +604,10 @@
               </label>
               <input id="csv-filename" class="form-control" type="text" readonly>
             </div>
-            <div id="csv_editor" style="margin-top: 20px;"></div>
-            <button id="save_csv" class="btn btn-primary" type="button" style="margin-top: 20px;">Save to Database</button>
+            <div style="margin-bottom: 20px;">
+              <button id="save_csv" class="btn btn-primary" type="button">Save to Database</button>
+            </div>
+            <div id="csv_editor" style="margin-bottom: 20px;"></div>
           </div>
         </div>
         {{ end }}
