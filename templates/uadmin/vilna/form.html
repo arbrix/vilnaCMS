@@ -1562,7 +1562,8 @@ $('.delete-file-btn').click(function(e){
         window.location.href = RootURL+modelName;
       },
       error: function(xhr) {
-        $('#save_csv').after('<span class="text-danger ml-2"><strong>Error:</strong> Failed to import CSV data</span>');
+        var errorMessage = xhr.responseText || 'Failed to import CSV data';
+        $('#save_csv').after('<span class="text-danger ml-2"><strong>Error:</strong> '+errorMessage+'</span>');
       }
     });
   });
