@@ -3,7 +3,7 @@ module github.com/arbrix/vilnaCMS
 go 1.20
 
 require (
-	github.com/arbrix/uadmin v0.0.0-20241107115516-e95916cdeb9a
+	github.com/arbrix/uadmin v0.0.0-20241220120118-27616105e1fc
 	github.com/stretchr/testify v1.9.0
 )
 
